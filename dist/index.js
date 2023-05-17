@@ -35806,7 +35806,6 @@ var HLSLoader = class {
 function main() {
   const app = (0, import_express.default)();
   app.set("port", process.env.PORT || 5173);
-  app.set("host", process.env.HOST || "localhost");
   app.use((0, import_cors.default)());
   const sessionManager = new SessionManager();
   app.get("/create/:videoId", async (req, res) => {
@@ -35867,8 +35866,8 @@ function main() {
       }
     }
   );
-  app.listen(app.get("port"), app.get("host"), () => {
-    console.log("http://" + app.get("host") + ":" + app.get("port"));
+  app.listen(app.get("port"), () => {
+    console.log("http://localhost:" + app.get("port"));
   });
 }
 main();

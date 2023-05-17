@@ -7,7 +7,6 @@ import fetch from "node-fetch";
 function main() {
   const app = express();
   app.set("port", process.env.PORT || 5173);
-  app.set("host", process.env.HOST || "localhost");
   app.use(cors());
 
   const sessionManager = new SessionManager();
@@ -89,8 +88,8 @@ function main() {
     }
   );
 
-  app.listen(app.get("port"), app.get("host"), () => {
-    console.log("http://" + app.get("host") + ":" + app.get("port"));
+  app.listen(app.get("port"), () => {
+    console.log("http://localhost:" + app.get("port"));
   });
 }
 
