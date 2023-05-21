@@ -35811,7 +35811,12 @@ function main() {
   app.get("/create/:videoId", async (req, res) => {
     const { videoId } = req.params;
     const sessionId = await sessionManager.create(videoId);
-    res.send(sessionId);
+    const session = sessionManager.get(sessionId);
+    res.send({
+      sessionId,
+      session: session?.sessionData,
+      initialWatchData: session?.initialWatchData
+    });
   });
   app.get("/heatbeat/:sessionId", (req, res) => {
     const { sessionId } = req.params;

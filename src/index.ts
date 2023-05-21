@@ -15,7 +15,13 @@ function main() {
     const { videoId } = req.params;
     const sessionId = await sessionManager.create(videoId);
 
-    res.send(sessionId);
+    const session = sessionManager.get(sessionId);
+
+    res.send({
+      sessionId,
+      session: session?.sessionData,
+      initialWatchData: session?.initialWatchData,
+    });
   });
 
   app.get<{ sessionId: string }>("/heatbeat/:sessionId", (req, res) => {
